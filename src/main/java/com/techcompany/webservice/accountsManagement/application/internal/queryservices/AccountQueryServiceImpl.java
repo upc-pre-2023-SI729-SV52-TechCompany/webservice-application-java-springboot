@@ -24,6 +24,7 @@ public class AccountQueryServiceImpl implements AccountQueryService {
 
     @Override
     public Optional<Account> handle(GetAccountByIdQuery query){
+
         return accountRepository.findById(query.accountid());
     }
 }

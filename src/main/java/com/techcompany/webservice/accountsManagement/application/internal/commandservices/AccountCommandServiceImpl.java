@@ -22,7 +22,14 @@ public class AccountCommandServiceImpl implements AccountCommandService {
         accountRepository.findByEmail(email).map(account -> {
             throw new IllegalStateException("Email already taken");
         });
-        var account = new Account(command.name(), command.email(), command.country(), command.birthday(), command.phonenumber(), command.username(), command.password());
+        var account = new Account(
+                command.name(),
+                command.email(),
+                command.country(),
+                command.birthday(),
+                command.phonenumber(),
+                command.username(),
+                command.password());
         accountRepository.save(account);
         return account.getId();
     }
