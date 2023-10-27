@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1")
 public class AccountController {
     private final AccountCommandService accountCommandService;
     private final AccountQueryService accountQueryService;
@@ -40,4 +40,12 @@ public class AccountController {
         var accountResource = AccountResourceFromEntityAssembler.toResourceFromEntity(account.get());
         return new ResponseEntity<>(accountResource, HttpStatus.CREATED);
     }
+
+    /*
+     @Annotation
+     - The @GetMapping annotation is used to map HTTP GET requests onto specific handler methods.
+     @EndPoint
+        - http://localhost:8080/api/v1/login
+     */
+
 }
