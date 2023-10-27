@@ -40,28 +40,17 @@ public class Account extends AbstractAggregateRoot<Account> {
         this.password = new Password(password);
     }
 
-    public Account() {
-    }
+    public Account() { }
 
-    public void updateName(String name) {
-        this.name = new PersonName(name);
-    }
+    public void updateName(String name) { this.name = new PersonName(name); }
 
-    public void updateEmail(String email) {
-        this.email = new EmailAddress(email);
-    }
+    public void updateEmail(String email) { this.email = new EmailAddress(email); }
 
-    public String getName() {
-        return this.name.gelFullName();
-    }
+    public String getName() { return this.name.gelFullName(); }
 
-    public String getEmail() {
-        return this.email.getEmail();
-    }
+    public String getEmail() { return this.email.getEmail(); }
 
-    public String getPassword() {
-        return this.password.getPassword();
-    }
+    public String getPassword() { return this.password.getPassword(); }
 
     public String getCountry() {
         return this.country.getCountry();
