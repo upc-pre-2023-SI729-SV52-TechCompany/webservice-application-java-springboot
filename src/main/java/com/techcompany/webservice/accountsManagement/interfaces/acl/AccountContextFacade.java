@@ -14,7 +14,9 @@ public class AccountContextFacade {
     private final AccountCommandService accountCommandService;
     private final AccountQueryService accountQueryService;
 
-    public AccountContextFacade(AccountCommandService accountCommandService, AccountQueryService accountQueryService) {
+    public AccountContextFacade(
+            AccountCommandService accountCommandService,
+            AccountQueryService accountQueryService) {
         this.accountCommandService = accountCommandService;
         this.accountQueryService = accountQueryService;
 
