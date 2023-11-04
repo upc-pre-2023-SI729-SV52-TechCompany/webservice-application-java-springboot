@@ -14,4 +14,5 @@ public record Country(String country) {
     public String getCountry() {
         return country;
     }
+
 }
