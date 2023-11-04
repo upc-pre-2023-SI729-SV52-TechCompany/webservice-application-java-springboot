@@ -55,4 +55,16 @@ public class ClientController {
                 .toList();
         return ResponseEntity.ok(clientResources);
     }
+
+    @GetMapping
+    @RequestMapping(value = "/{clientId}")
+    public ResponseEntity<ClientResource> getClientById(@PathVariable Long clientId) {
+        var getClientByIdQuery = new GetClientByIdQuery(clientId);
+        var client = clientQueryService.handle(getClientByIdQuery);
+        if (client.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        var clientResource = ClientResourceFromEntityAssembler.toResourceFromEntity(client.get());
+        return ResponseEntity.ok(clientResource);
+    }
 }
