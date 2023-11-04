@@ -1,7 +1,5 @@
 package com.techcompany.webservice.accountsManagement.domain.model.valueobjects;
 
-import lombok.Getter;
-
 import java.util.Date;
 
 public record Birthdate(Date birthdate) {
@@ -16,5 +14,4 @@ public record Birthdate(Date birthdate) {
     public Date getBirthdate() {
         return birthdate;
     }
-
 }

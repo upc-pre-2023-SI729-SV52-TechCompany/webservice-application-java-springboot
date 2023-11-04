@@ -12,4 +12,5 @@ public record Password(String password) {
     public String getPassword() {
         return password;
     }
+
 }
