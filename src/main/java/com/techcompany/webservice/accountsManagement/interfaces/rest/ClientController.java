@@ -29,6 +29,17 @@ public class ClientController {
         this.clientQueryService = clientQueryService;
     }
 
+
+    @GetMapping
+    public ResponseEntity<List<ClientResource>> getAllClients() {
+        var getAllClientsQuery = new GetAllClientsQuery();
+        var clients = clientQueryService.handle(getAllClientsQuery);
+        var clientResources = clients.stream()
+                .map(ClientResourceFromEntityAssembler::toResourceFromEntity)
+                .toList();
+        return ResponseEntity.ok(clientResources);
+    }
+
     @PostMapping
     @RequestMapping(value = "/create")
     public ResponseEntity<ClientResource> createClient(@RequestBody CreateClientResource createClientResource) {
@@ -44,16 +55,6 @@ public class ClientController {
         }
         var clientResource = ClientResourceFromEntityAssembler.toResourceFromEntity(client.get());
         return new ResponseEntity<>(clientResource, HttpStatus.CREATED);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<ClientResource>> getAllClients() {
-        var getAllClientsQuery = new GetAllClientsQuery();
-        var clients = clientQueryService.handle(getAllClientsQuery);
-        var clientResources = clients.stream()
-                .map(ClientResourceFromEntityAssembler::toResourceFromEntity)
-                .toList();
-        return ResponseEntity.ok(clientResources);
     }
 
     @GetMapping

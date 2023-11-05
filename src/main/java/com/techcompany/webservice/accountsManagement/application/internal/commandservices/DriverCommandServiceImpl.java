@@ -1,12 +1,12 @@
 package com.techcompany.webservice.accountsManagement.application.internal.commandservices;
 
-import com.techcompany.webservice.accountsManagement.domain.model.commands.CreateDriverCommand;
-import com.techcompany.webservice.accountsManagement.domain.model.commands.DeleteDriverCommand;
-import com.techcompany.webservice.accountsManagement.domain.model.commands.UpdateDriverCommand;
 import com.techcompany.webservice.accountsManagement.domain.model.entities.Driver;
 import com.techcompany.webservice.accountsManagement.domain.model.valueobjects.*;
 import com.techcompany.webservice.accountsManagement.domain.services.DriverCommandService;
 import com.techcompany.webservice.accountsManagement.infrastructure.persistence.jpa.repositories.DriverRepository;
+import com.techcompany.webservice.accountsManagement.interfaces.rest.resources.CreateDriverResource;
+import com.techcompany.webservice.accountsManagement.interfaces.rest.resources.DeleteDriverResource;
+import com.techcompany.webservice.accountsManagement.interfaces.rest.resources.UpdateDriverResource;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +18,7 @@ public class DriverCommandServiceImpl implements DriverCommandService {
     }
 
     @Override
-    public Long handle(CreateDriverCommand command) {
+    public Long handle(CreateDriverResource command) {
         // Create a new driver
         Driver newDriver = new Driver(
                 null,
@@ -48,7 +48,7 @@ public class DriverCommandServiceImpl implements DriverCommandService {
     }
 
     @Override
-    public Long handle(UpdateDriverCommand command) {
+    public Long handle(UpdateDriverResource command) {
         Driver existingDriver = driverRepository.findById(command.driverId()).orElse(null);
         // Check if the driver exists
         if (existingDriver != null){
@@ -79,14 +79,15 @@ public class DriverCommandServiceImpl implements DriverCommandService {
     }
 
     @Override
-    public void handle(DeleteDriverCommand command) {
-        // Get the driver from the database
-        Driver existingDriver = driverRepository.findById(command.driverId()).orElse(null);
-        if (existingDriver != null) {
-            // Delete the driver
-            driverRepository.delete(existingDriver);
+    public Long handle(Long deleteDriverCommand) {
+        Driver existingDriver = driverRepository.findById(deleteDriverCommand).orElse(null);
+        if (existingDriver != null){
+            driverRepository.deleteById(deleteDriverCommand);
+            return existingDriver.getId();
         } else {
             throw new RuntimeException("Driver not found");
         }
     }
+
+
 }
