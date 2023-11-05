@@ -14,7 +14,6 @@ import org.springframework.data.annotation.CreatedDate;
 @Getter
 @Setter
 @With
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "contracts")
@@ -43,4 +42,17 @@ public class Contract {
     private CvvCard cvvCard;
     @Embedded
     private ExpireCard expireCard;
+
+    public Contract(DriverId driverId, ClientId clientId, Services services, Location origin, Location destination, ServiceDate serviceDate, ServiceTime serviceTime, CardNum cardNum, CvvCard cvvCard, ExpireCard expireCard) {
+        this.driverId = driverId;
+        this.clientId = clientId;
+        this.services = services;
+        this.origin = origin;
+        this.destination = destination;
+        this.serviceDate = serviceDate;
+        this.serviceTime = serviceTime;
+        this.cardNum = cardNum;
+        this.cvvCard = cvvCard;
+        this.expireCard = expireCard;
+    }
 }
