@@ -29,7 +29,9 @@ public class ClientController {
         this.clientQueryService = clientQueryService;
     }
 
-
+    /*
+     * Get All Clients endpoint
+     */
     @GetMapping
     public ResponseEntity<List<ClientResource>> getAllClients() {
         var getAllClientsQuery = new GetAllClientsQuery();
@@ -40,9 +42,13 @@ public class ClientController {
         return ResponseEntity.ok(clientResources);
     }
 
+    /*
+     * Create Client endpoint
+     * @param createClientResource
+     */
     @PostMapping
     @RequestMapping(value = "/create")
-    public ResponseEntity<ClientResource> createClient(@RequestBody CreateClientResource createClientResource) {
+    public ResponseEntity<CreateClientResource> createClient(@RequestBody CreateClientResource createClientResource) {
         var createClientCommand = CreateClientFromResourceAssembler.toCommandFromResource(createClientResource);
         var clientId = clientCommandService.handle(createClientCommand);
         if (clientId == null) {
@@ -50,13 +56,17 @@ public class ClientController {
         }
         var getClientByIdQuery = new GetClientByIdQuery(clientId);
         var client = clientQueryService.handle(getClientByIdQuery);
+
         if (client.isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
-        var clientResource = ClientResourceFromEntityAssembler.toResourceFromEntity(client.get());
-        return new ResponseEntity<>(clientResource, HttpStatus.CREATED);
+        return new ResponseEntity<>(createClientResource, HttpStatus.CREATED);
     }
 
+    /*
+     * Get Client by Id endpoint
+     * @param clientId
+     */
     @GetMapping
     @RequestMapping(value = "/{clientId}")
     public ResponseEntity<ClientResource> getClientById(@PathVariable Long clientId) {

@@ -1,11 +1,12 @@
 package com.techcompany.webservice.accountsManagement.interfaces.rest.transform;
 
+import com.techcompany.webservice.accountsManagement.domain.model.commands.CreateDriverCommand;
 import com.techcompany.webservice.accountsManagement.interfaces.rest.resources.CreateDriverResource;
 import com.techcompany.webservice.accountsManagement.interfaces.rest.resources.DriverResource;
 
 public class CreateDriverFromResourceAssembler {
-    public static CreateDriverResource toCommandFromResource(CreateDriverResource resource) {
-        return new CreateDriverResource(
+    public static CreateDriverCommand toCommandFromResource(CreateDriverResource resource) {
+        return new CreateDriverCommand(
                 resource.email(),
                 resource.password(),
                 resource.fullName(),

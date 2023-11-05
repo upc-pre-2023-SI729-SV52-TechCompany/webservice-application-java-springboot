@@ -6,8 +6,6 @@ public record ExpireCard(String expireCard) {
             throw new IllegalArgumentException("Expire card cannot be null or blank");
         } else if (expireCard.length() != 5) {
             throw new IllegalArgumentException("Expire card must be 5 digits");
-        } else if (!expireCard.matches("[0-9]+")) {
-            throw new IllegalArgumentException("Expire card must be numeric");
         }
     }
 

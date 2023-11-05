@@ -8,18 +8,18 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
+import java.util.Date;
+
 /*
  * Aggregate for Contract
  */
-@Getter
-@Setter
-@With
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "contracts")
 public class Contract {
     @Id
+    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Embedded
@@ -48,16 +48,108 @@ public class Contract {
     @Embedded
     private ExpireCard expireCard;
 
-    public Contract(DriverId driverId, ClientId clientId, Services services, Location origin, Location destination, ServiceDate serviceDate, ServiceTime serviceTime, CardNum cardNum, CvvCard cvvCard, ExpireCard expireCard) {
-        this.driverId = driverId;
-        this.clientId = clientId;
-        this.services = services;
-        this.origin = origin;
-        this.destination = destination;
-        this.serviceDate = serviceDate;
-        this.serviceTime = serviceTime;
-        this.cardNum = cardNum;
-        this.cvvCard = cvvCard;
-        this.expireCard = expireCard;
+    // Constructor for attributes of original types
+    public Contract(Long driverId, Long clientId, String services, String origin, String destination, Date serviceDate, String serviceTime, String cardNum, String cvvCard, String expireCard) {
+        this.driverId = new DriverId(driverId);
+        this.clientId = new ClientId(clientId);
+        this.services = new Services(services);
+        this.origin = new Location(origin);
+        this.destination = new Location(destination);
+        this.serviceDate = new ServiceDate(serviceDate);
+        this.serviceTime = new ServiceTime(serviceTime);
+        this.cardNum = new CardNum(cardNum);
+        this.cvvCard = new CvvCard(cvvCard);
+        this.expireCard = new ExpireCard(expireCard);
     }
+
+    // Getters and Setters for attributes
+
+    public Long getDriverId() {
+        return driverId.getDriverId();
+    }
+
+    public void setDriverId(Long driverId) {
+        this.driverId = new DriverId(driverId);
+    }
+
+    public Long getClientId() {
+        return clientId.getClientId();
+    }
+
+    public void setClientId(Long clientId) {
+        this.clientId = new ClientId(clientId);
+    }
+
+    public Date getContractDate() {
+        return contractDate.getContractDate();
+    }
+
+    public void setContractDate(Date contractDate) {
+        this.contractDate = new ContractDate(contractDate);
+    }
+
+    public String getServices() {
+        return services.getService();
+    }
+
+    public void setServices(String services) {
+        this.services = new Services(services);
+    }
+
+    public String getOrigin() {
+        return origin.getAddress();
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = new Location(origin);
+    }
+
+    public String getDestination() {
+        return destination.getAddress();
+    }
+
+    public void setDestination(String destination) {
+        this.destination = new Location(destination);
+    }
+
+    public Date getServiceDate() {
+        return serviceDate.getServiceDate();
+    }
+
+    public void setServiceDate(Date serviceDate) {
+        this.serviceDate = new ServiceDate(serviceDate);
+    }
+
+    public String getServiceTime() {
+        return serviceTime.getServiceTime();
+    }
+
+    public void setServiceTime(String serviceTime) {
+        this.serviceTime = new ServiceTime(serviceTime);
+    }
+
+    public String getCardNum() {
+        return cardNum.getCardNum();
+    }
+
+    public void setCardNum(String cardNum) {
+        this.cardNum = new CardNum(cardNum);
+    }
+
+    public String getCvvCard() {
+        return cvvCard.getCvvCard();
+    }
+
+    public void setCvvCard(String cvvCard) {
+        this.cvvCard = new CvvCard(cvvCard);
+    }
+
+    public String getExpireCard() {
+        return expireCard.getExpireCard();
+    }
+
+    public void setExpireCard(String expireCard) {
+        this.expireCard = new ExpireCard(expireCard);
+    }
+
 }

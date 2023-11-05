@@ -1,10 +1,11 @@
 package com.techcompany.webservice.contracts.interfaces.rest.transforms;
 
+import com.techcompany.webservice.contracts.domain.model.commands.UpdateContractCommand;
 import com.techcompany.webservice.contracts.interfaces.rest.resources.UpdateContractResource;
 
 public class UpdateContractFromResourceAssembler {
-    public static UpdateContractResource toResourceFromEntity(UpdateContractResource resource) {
-        return new UpdateContractResource(
+    public static UpdateContractCommand toResourceFromEntity(UpdateContractResource resource) {
+        return new UpdateContractCommand(
                 resource.contractId(),
                 resource.driverId(),
                 resource.clientId(),

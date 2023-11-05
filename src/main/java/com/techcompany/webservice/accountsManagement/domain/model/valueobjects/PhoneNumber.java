@@ -1,6 +1,6 @@
 package com.techcompany.webservice.accountsManagement.domain.model.valueobjects;
 
-public record PhoneNumber(Long phoneNumber) {
+public record PhoneNumber(String phoneNumber) {
     public PhoneNumber() {
         this(null);
     }
@@ -11,7 +11,7 @@ public record PhoneNumber(Long phoneNumber) {
         }
     }
 
-    public Long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 }

@@ -5,6 +5,18 @@ import com.techcompany.webservice.accountsManagement.interfaces.rest.resources.C
 
 public class ClientResourceFromEntityAssembler {
     public static ClientResource toResourceFromEntity(Client client) {
-        return new ClientResource(client.getId());
+        return new ClientResource(
+                client.getEmail(),
+                client.getPassword(),
+                client.getFullName(),
+                client.getPhone(),
+                client.getBirthdate(),
+                client.getIdNumber(),
+                client.getAge(),
+                client.getCountry(),
+                client.getPhoto(),
+                client.getUsername(),
+                client.getUserDescription()
+        );
     }
 }
