@@ -1,4 +1,17 @@
 package com.techcompany.webservice.contracts.interfaces.rest.resources;
 
-public record ContractResource(Long contractId) {
+import java.util.Date;
+
+public record ContractResource(
+        Long driverId,
+        Long clientId,
+        String services,
+        String origin,
+        String destination,
+        Date serviceDate,
+        String serviceTime,
+        String cardNum,
+        String cvvCard,
+        String expireCard
+) {
 }

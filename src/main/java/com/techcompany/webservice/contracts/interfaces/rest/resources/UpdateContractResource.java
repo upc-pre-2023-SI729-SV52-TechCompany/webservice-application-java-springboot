@@ -1,5 +1,7 @@
 package com.techcompany.webservice.contracts.interfaces.rest.resources;
 
+import java.util.Date;
+
 public record UpdateContractResource(
         Long contractId,
         Long driverId,
@@ -7,7 +9,7 @@ public record UpdateContractResource(
         String services,
         String origin,
         String destination,
-        String serviceDate,
+        Date serviceDate,
         String serviceTime,
         String cardNum,
         String cvvCard,

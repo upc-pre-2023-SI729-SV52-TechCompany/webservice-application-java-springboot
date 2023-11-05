@@ -21,18 +21,17 @@ public class ClientCommandServiceImpl implements ClientCommandService {
     public Long handle(CreateClientCommand command) {
         // Create a new client
         Client newClient = new Client(
-                null,
-                new EmailAddress(command.email()),
-                new Password(command.password()),
-                new PersonName(command.fullName()),
-                new PhoneNumber(command.phone()),
-                new Birthdate(command.birthdate()),
-                new IdNumber(command.idNumber()),
-                new Age(command.age()),
-                new Country(command.country()),
-                new Photo(command.photo()),
-                new Username(command.username()),
-                new UserDescription(command.userDescription())
+                command.email(),
+                command.password(),
+                command.fullName(),
+                command.phone(),
+                command.birthdate(),
+                command.idNumber(),
+                command.age(),
+                command.country(),
+                command.photo(),
+                command.username(),
+                command.userDescription()
         );
         // Save the new client
         Client savedClient = clientRepository.save(newClient);
@@ -46,20 +45,22 @@ public class ClientCommandServiceImpl implements ClientCommandService {
         Client existingClient = clientRepository.findById(command.clientId()).orElse(null);
         // Check if the client exists
         if (existingClient != null) {
-            existingClient.setEmail(new EmailAddress(command.email()));
-            existingClient.setPassword(new Password(command.password()));
-            existingClient.setFullName(new PersonName(command.fullName()));
-            existingClient.setPhone(new PhoneNumber(command.phone()));
-            existingClient.setBirthdate(new Birthdate(command.birthdate()));
-            existingClient.setIdNumber(new IdNumber(command.idNumber()));
-            existingClient.setAge(new Age(command.age()));
-            existingClient.setCountry(new Country(command.country()));
-            existingClient.setPhoto(new Photo(command.photo()));
-            existingClient.setUsername(new Username(command.username()));
-            existingClient.setUserDescription(new UserDescription(command.userDescription()));
-            Client updatedClient = clientRepository.save(existingClient);
-            // return ID of updated client
-            return updatedClient.getId();
+            // Update the client fields
+            existingClient.setEmail(command.email());
+            existingClient.setPassword(command.password());
+            existingClient.setFullName(command.fullName());
+            existingClient.setPhone(command.phone());
+            existingClient.setBirthdate(command.birthdate());
+            existingClient.setIdNumber(command.idNumber());
+            existingClient.setAge(command.age());
+            existingClient.setCountry(command.country());
+            existingClient.setPhoto(command.photo());
+            existingClient.setUsername(command.username());
+            existingClient.setUserDescription(command.userDescription());
+            // Save the updated client
+            Client savedClient = clientRepository.save(existingClient);
+            // return ID of saved client
+            return savedClient.getId();
         } else {
             // Manage the case where the client does not exist
             throw new RuntimeException("Client not found");

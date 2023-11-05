@@ -5,6 +5,17 @@ import com.techcompany.webservice.contracts.interfaces.rest.resources.ContractRe
 
 public class ContractResourceFromEntityAssembler {
     public static ContractResource toResourceFromEntity(Contract contract) {
-        return new ContractResource(contract.getId());
+        return new ContractResource(
+                contract.getDriverId(),
+                contract.getClientId(),
+                contract.getServices(),
+                contract.getOrigin(),
+                contract.getDestination(),
+                contract.getServiceDate(),
+                contract.getServiceTime(),
+                contract.getCardNum(),
+                contract.getCvvCard(),
+                contract.getExpireCard()
+        );
     }
 }
