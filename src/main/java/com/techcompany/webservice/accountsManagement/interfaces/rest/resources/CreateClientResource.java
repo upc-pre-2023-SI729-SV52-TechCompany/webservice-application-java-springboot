@@ -6,7 +6,7 @@ public record CreateClientResource(
         String email,
         String password,
         String fullName,
-        Long phone,
+        String phone,
         Date birthdate,
         Long idNumber,
         Integer age,

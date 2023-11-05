@@ -1,3 +1,17 @@
 package com.techcompany.webservice.accountsManagement.interfaces.rest.resources;
 
-public record ClientResource(Long clientId) {}
+import java.util.Date;
+
+public record ClientResource(
+        String email,
+        String password,
+        String fullName,
+        String phone,
+        Date birthdate,
+        Long idNumber,
+        Integer age,
+        String country,
+        String photo,
+        String username,
+        String userDescription
+) {}
