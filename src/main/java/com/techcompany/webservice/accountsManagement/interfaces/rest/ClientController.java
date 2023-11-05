@@ -29,6 +29,17 @@ public class ClientController {
         this.clientQueryService = clientQueryService;
     }
 
+
+    @GetMapping
+    public ResponseEntity<List<ClientResource>> getAllClients() {
+        var getAllClientsQuery = new GetAllClientsQuery();
+        var clients = clientQueryService.handle(getAllClientsQuery);
+        var clientResources = clients.stream()
+                .map(ClientResourceFromEntityAssembler::toResourceFromEntity)
+                .toList();
+        return ResponseEntity.ok(clientResources);
+    }
+
     @PostMapping
     @RequestMapping(value = "/create")
     public ResponseEntity<ClientResource> createClient(@RequestBody CreateClientResource createClientResource) {
@@ -47,12 +58,14 @@ public class ClientController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ClientResource>> getAllClients() {
-        var getAllClientsQuery = new GetAllClientsQuery();
-        var clients = clientQueryService.handle(getAllClientsQuery);
-        var clientResources = clients.stream()
-                .map(ClientResourceFromEntityAssembler::toResourceFromEntity)
-                .toList();
-        return ResponseEntity.ok(clientResources);
+    @RequestMapping(value = "/{clientId}")
+    public ResponseEntity<ClientResource> getClientById(@PathVariable Long clientId) {
+        var getClientByIdQuery = new GetClientByIdQuery(clientId);
+        var client = clientQueryService.handle(getClientByIdQuery);
+        if (client.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        var clientResource = ClientResourceFromEntityAssembler.toResourceFromEntity(client.get());
+        return ResponseEntity.ok(clientResource);
     }
 }

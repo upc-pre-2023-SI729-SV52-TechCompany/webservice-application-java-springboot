@@ -3,6 +3,7 @@ package com.techcompany.webservice.accountsManagement.interfaces.rest.resources;
 import java.util.Date;
 
 public record UpdateDriverResource(
+        Long driverId,
         String email,
         String password,
         String fullName,
@@ -19,7 +20,6 @@ public record UpdateDriverResource(
         String propertyDocument,
         String certificate,
         String photoVehicle,
-        String photoVehicle2,
         String username,
         String userDescription
 ) {
