@@ -5,6 +5,7 @@ import com.techcompany.webservice.contracts.interfaces.rest.resources.UpdateCont
 public class UpdateContractFromResourceAssembler {
     public static UpdateContractResource toResourceFromEntity(UpdateContractResource resource) {
         return new UpdateContractResource(
+                resource.contractId(),
                 resource.driverId(),
                 resource.clientId(),
                 resource.services(),

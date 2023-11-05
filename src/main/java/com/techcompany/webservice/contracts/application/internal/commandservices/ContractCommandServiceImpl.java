@@ -4,12 +4,12 @@ import com.techcompany.webservice.accountsManagement.domain.model.aggregates.Cli
 import com.techcompany.webservice.accountsManagement.domain.model.aggregates.DriverId;
 import com.techcompany.webservice.contracts.domain.model.aggregates.Contract;
 import com.techcompany.webservice.contracts.domain.model.commands.CreateContractCommand;
-import com.techcompany.webservice.contracts.domain.model.commands.DeleteContractCommand;
-import com.techcompany.webservice.contracts.domain.model.commands.UpdateContractCommand;
 import com.techcompany.webservice.contracts.domain.model.entities.Location;
 import com.techcompany.webservice.contracts.domain.model.valueobjects.*;
 import com.techcompany.webservice.contracts.domain.services.ContractCommandService;
 import com.techcompany.webservice.contracts.infraestructure.persistence.jpa.repositories.ContractRepository;
+import com.techcompany.webservice.contracts.interfaces.rest.resources.DeleteContractResource;
+import com.techcompany.webservice.contracts.interfaces.rest.resources.UpdateContractResource;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -39,7 +39,7 @@ public class ContractCommandServiceImpl implements ContractCommandService {
     }
 
     @Override
-    public Long handle(UpdateContractCommand command) {
+    public Long handle(UpdateContractResource command) {
         Contract existingContract = contractRepository.findById(command.contractId()).orElse(null);
         if (existingContract != null) {
             existingContract.setDriverId(new DriverId(command.driverId()));
@@ -47,7 +47,6 @@ public class ContractCommandServiceImpl implements ContractCommandService {
             existingContract.setServices(new Services(command.services()));
             existingContract.setOrigin(new Location(command.origin()));
             existingContract.setDestination(new Location(command.destination()));
-            existingContract.setServiceDate(new ServiceDate(command.serviceDate()));
             existingContract.setServiceTime(new ServiceTime(command.serviceTime()));
             existingContract.setCardNum(new CardNum(command.cardNum()));
             existingContract.setCvvCard(new CvvCard(command.cvvCard()));
@@ -59,7 +58,7 @@ public class ContractCommandServiceImpl implements ContractCommandService {
     }
 
     @Override
-    public void handle(DeleteContractCommand command) {
+    public void handle(DeleteContractResource command) {
         contractRepository.findById(command.contractId()).ifPresent(contractRepository::delete);
     }
 }

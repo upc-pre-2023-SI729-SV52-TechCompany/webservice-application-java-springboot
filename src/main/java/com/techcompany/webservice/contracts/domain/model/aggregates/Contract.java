@@ -15,6 +15,7 @@ import org.springframework.data.annotation.CreatedDate;
 @Setter
 @With
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "contracts")
 public class Contract {
@@ -30,7 +31,11 @@ public class Contract {
     private ContractDate contractDate;
     @Embedded
     private Services services;
+    @Embedded
+    @AttributeOverride(name = "address", column = @Column(name = "origin_location"))
     private Location origin;
+    @Embedded
+    @AttributeOverride(name = "address", column = @Column(name = "destination_location"))
     private Location destination;
     @Embedded
     private ServiceDate serviceDate;
