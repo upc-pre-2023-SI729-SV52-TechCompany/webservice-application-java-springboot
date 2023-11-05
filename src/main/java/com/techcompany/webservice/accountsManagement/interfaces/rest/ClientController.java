@@ -7,7 +7,7 @@ import com.techcompany.webservice.accountsManagement.domain.services.ClientQuery
 import com.techcompany.webservice.accountsManagement.interfaces.rest.resources.ClientResource;
 import com.techcompany.webservice.accountsManagement.interfaces.rest.resources.CreateClientResource;
 import com.techcompany.webservice.accountsManagement.interfaces.rest.transform.ClientResourceFromEntityAssembler;
-import com.techcompany.webservice.accountsManagement.interfaces.rest.transform.CreateClientFromResourceAssambler;
+import com.techcompany.webservice.accountsManagement.interfaces.rest.transform.CreateClientFromResourceAssembler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +43,7 @@ public class ClientController {
     @PostMapping
     @RequestMapping(value = "/create")
     public ResponseEntity<ClientResource> createClient(@RequestBody CreateClientResource createClientResource) {
-        var createClientCommand = CreateClientFromResourceAssambler.toCommandFromResource(createClientResource);
+        var createClientCommand = CreateClientFromResourceAssembler.toCommandFromResource(createClientResource);
         var clientId = clientCommandService.handle(createClientCommand);
         if (clientId == null) {
             return ResponseEntity.badRequest().build();
