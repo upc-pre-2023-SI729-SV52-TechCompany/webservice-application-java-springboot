@@ -1,4 +1,4 @@
-FROM openjdk:21-bullseye
+FROM openjdk:21
 LABEL authors="jack"
 VOLUME /tmp
 ARG JAR_FILE=target/*.jar
