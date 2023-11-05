@@ -19,7 +19,6 @@ public record CreateDriverResource(
         String propertyDocument,
         String certificate,
         String photoVehicle,
-        String photoVehicle2,
         String username,
         String userDescription
 ) {

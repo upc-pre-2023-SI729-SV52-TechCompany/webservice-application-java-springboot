@@ -10,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "drivers")
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
