@@ -23,7 +23,8 @@ public class DriverResourceFromEntityAssembler {
                 driver.getCertificate(),
                 driver.getPhotoVehicle(),
                 driver.getUsername(),
-                driver.getUserDescription()
+                driver.getUserDescription(),
+                driver.getProfileReview()
         );
     }
 }

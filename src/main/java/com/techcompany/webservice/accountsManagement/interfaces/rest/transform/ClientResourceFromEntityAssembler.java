@@ -16,7 +16,8 @@ public class ClientResourceFromEntityAssembler {
                 client.getCountry(),
                 client.getPhoto(),
                 client.getUsername(),
-                client.getUserDescription()
+                client.getUserDescription(),
+                client.getProfileReview()
         );
     }
 }

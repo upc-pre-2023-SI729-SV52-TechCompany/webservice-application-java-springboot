@@ -4,9 +4,9 @@ import com.techcompany.webservice.contracts.domain.model.commands.UpdateContract
 import com.techcompany.webservice.contracts.interfaces.rest.resources.UpdateContractResource;
 
 public class UpdateContractFromResourceAssembler {
-    public static UpdateContractCommand toResourceFromEntity(UpdateContractResource resource) {
+    public static UpdateContractCommand toCommandFromResource(Long contractId,UpdateContractResource resource) {
         return new UpdateContractCommand(
-                resource.contractId(),
+                contractId,
                 resource.driverId(),
                 resource.clientId(),
                 resource.services(),

@@ -62,6 +62,19 @@ public class Contract {
         this.expireCard = new ExpireCard(expireCard);
     }
 
+    public void updateContractInfo(Long driverId, Long clientId, String services, String origin, String destination, Date serviceDate, String serviceTime, String cardNum, String cvvCard, String expireCard) {
+        this.driverId = new DriverId(driverId);
+        this.clientId = new ClientId(clientId);
+        this.services = new Services(services);
+        this.origin = new Location(origin);
+        this.destination = new Location(destination);
+        this.serviceDate = new ServiceDate(serviceDate);
+        this.serviceTime = new ServiceTime(serviceTime);
+        this.cardNum = new CardNum(cardNum);
+        this.cvvCard = new CvvCard(cvvCard);
+        this.expireCard = new ExpireCard(expireCard);
+    }
+
     // Getters and Setters for attributes
 
     public Long getDriverId() {

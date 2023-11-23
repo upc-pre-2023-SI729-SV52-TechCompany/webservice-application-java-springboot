@@ -20,6 +20,7 @@ public record CreateDriverCommand(
         String certificate,
         String photoVehicle,
         String username,
-        String userDescription
+        String userDescription,
+        String profileReview
 ) {
 }

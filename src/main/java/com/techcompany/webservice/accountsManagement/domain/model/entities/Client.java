@@ -37,8 +37,10 @@ public class Client {
     private Username username;
     @Embedded
     private UserDescription userDescription;
+    @Embedded
+    private ProfileReview profileReview;
 
-    public Client(String email, String password, String fullName, String phone, Date birthdate, Long idNumber, Integer age, String country, String photo, String username, String userDescription) {
+    public Client(String email, String password, String fullName, String phone, Date birthdate, Long idNumber, Integer age, String country, String photo, String username, String userDescription, String profileReview) {
         this.email = new EmailAddress(email);
         this.password = new Password(password);
         this.fullName = new PersonName(fullName);
@@ -50,6 +52,22 @@ public class Client {
         this.photo = new Photo(photo);
         this.username = new Username(username);
         this.userDescription = new UserDescription(userDescription);
+        this.profileReview = new ProfileReview(profileReview);
+    }
+
+    public void updateClientInfo(String email, String password, String fullName, String phone, Date birthdate, Long idNumber, Integer age, String country, String photo, String username, String userDescription, String profileReview) {
+        this.email = new EmailAddress(email);
+        this.password = new Password(password);
+        this.fullName = new PersonName(fullName);
+        this.phone = new PhoneNumber(phone);
+        this.birthdate = new Birthdate(birthdate);
+        this.idNumber = new IdNumber(idNumber);
+        this.age = new Age(age);
+        this.country = new Country(country);
+        this.photo = new Photo(photo);
+        this.username = new Username(username);
+        this.userDescription = new UserDescription(userDescription);
+        this.profileReview = new ProfileReview(profileReview);
     }
 
     public String getEmail() {
@@ -138,5 +156,13 @@ public class Client {
 
     public void setUserDescription(String userDescription) {
         this.userDescription = new UserDescription(userDescription);
+    }
+
+    public String getProfileReview(){
+        return profileReview.getProfileReview();
+    }
+
+    public void setProfileReview(String profileReview){
+        this.profileReview = new ProfileReview(profileReview);
     }
 }

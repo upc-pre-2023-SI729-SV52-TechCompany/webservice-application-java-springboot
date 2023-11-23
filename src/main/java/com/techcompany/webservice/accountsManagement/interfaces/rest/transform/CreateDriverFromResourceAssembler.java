@@ -24,7 +24,8 @@ public class CreateDriverFromResourceAssembler {
                 resource.certificate(),
                 resource.photoVehicle(),
                 resource.username(),
-                resource.userDescription()
+                resource.userDescription(),
+                resource.profileReview()
         );
     }
 }

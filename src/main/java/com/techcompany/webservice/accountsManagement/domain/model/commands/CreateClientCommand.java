@@ -15,6 +15,7 @@ public record CreateClientCommand(
         String country,
         String photo,
         String username,
-        String userDescription
+        String userDescription,
+        String profileReview
 ) {
 }

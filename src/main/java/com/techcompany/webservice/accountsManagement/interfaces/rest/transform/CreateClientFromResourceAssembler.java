@@ -16,7 +16,8 @@ public class CreateClientFromResourceAssembler {
                 resource.country(),
                 resource.photo(),
                 resource.username(),
-                resource.userDescription()
+                resource.userDescription(),
+                resource.profileReview()
         );
     }
 }

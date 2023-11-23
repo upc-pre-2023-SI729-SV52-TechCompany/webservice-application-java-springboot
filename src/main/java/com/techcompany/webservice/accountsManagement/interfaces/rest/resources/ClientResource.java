@@ -13,5 +13,6 @@ public record ClientResource(
         String country,
         String photo,
         String username,
-        String userDescription
+        String userDescription,
+        String profileReview
 ) {}

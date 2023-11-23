@@ -51,9 +51,11 @@ public class Driver {
     private Username username;
     @Embedded
     private UserDescription userDescription;
+    @Embedded
+    private ProfileReview profileReview;
 
     // Constructor set attributes of original types
-    public Driver(String email, String password, String personName, String phone, Date birthdate, Long idNumber, Integer age, String country, String photo, String job, String timeExperience, String license, String soat, String propertyDocument, String certificate, String photoVehicle, String username, String userDescription) {
+    public Driver(String email, String password, String personName, String phone, Date birthdate, Long idNumber, Integer age, String country, String photo, String job, String timeExperience, String license, String soat, String propertyDocument, String certificate, String photoVehicle, String username, String userDescription, String profileReview) {
         this.email = new EmailAddress(email);
         this.password = new Password(password);
         this.fullName = new PersonName(personName);
@@ -72,7 +74,29 @@ public class Driver {
         this.photoVehicle = new PhotoVehicle(photoVehicle);
         this.username = new Username(username);
         this.userDescription = new UserDescription(userDescription);
+        this.profileReview = new ProfileReview(profileReview);
+    }
 
+    public void updateDriverInfo(String email, String password, String personName, String phone, Date birthdate, Long idNumber, Integer age, String country, String photo, String job, String timeExperience, String license, String soat, String propertyDocument, String certificate, String photoVehicle, String username, String userDescription, String profileReview) {
+        this.email = new EmailAddress(email);
+        this.password = new Password(password);
+        this.fullName = new PersonName(personName);
+        this.phone = new PhoneNumber(phone);
+        this.birthdate = new Birthdate(birthdate);
+        this.idNumber = new IdNumber(idNumber);
+        this.age = new Age(age);
+        this.country = new Country(country);
+        this.photo = new Photo(photo);
+        this.job = new Job(job);
+        this.timeExperience = new TimeExperience(timeExperience);
+        this.license = new License(license);
+        this.soat = new Soat(soat);
+        this.propertyDocument = new PropertyDocument(propertyDocument);
+        this.certificate = new Certificate(certificate);
+        this.photoVehicle = new PhotoVehicle(photoVehicle);
+        this.username = new Username(username);
+        this.userDescription = new UserDescription(userDescription);
+        this.profileReview = new ProfileReview(profileReview);
     }
 
     // Getters and setters
@@ -218,5 +242,13 @@ public class Driver {
 
     public void setUserDescription(String userDescription) {
         this.userDescription = new UserDescription(userDescription);
+    }
+
+    public String getProfileReview(){
+        return profileReview.getProfileReview();
+    }
+
+    public void setProfileReview(String profileReview){
+        this.profileReview = new ProfileReview(profileReview);
     }
 }

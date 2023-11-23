@@ -13,6 +13,7 @@ public record CreateClientResource(
         String country,
         String photo,
         String username,
-        String userDescription
+        String userDescription,
+        String profileReview
 ) {
 }

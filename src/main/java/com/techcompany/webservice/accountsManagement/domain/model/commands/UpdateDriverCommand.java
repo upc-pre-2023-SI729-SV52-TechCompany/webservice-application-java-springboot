@@ -20,8 +20,8 @@ public record UpdateDriverCommand(
         String propertyDocument,
         String certificate,
         String photoVehicle,
-        String photoVehicle2,
         String username,
-        String userDescription
+        String userDescription,
+        String profileReview
 ) {
 }
